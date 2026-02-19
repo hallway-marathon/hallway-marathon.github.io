@@ -4,49 +4,71 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     overflow: hidden;
+    text-align: center;
 }
 
 .container {
-    text-align: center;
     margin-top: 120px;
 }
 
+/* Title Wrapper */
 .title-wrapper {
     position: relative;
     display: inline-block;
+    width: 600px;
+    height: 250px;
 }
 
+/* Title */
 .title {
-    font-size: 64px;
-    font-weight: bold;
-    animation: bounce 2s ease-in-out infinite;
-    position: relative;
-    z-index: 2;
-}
-
-@keyframes bounce {
-    0% { transform: scale(0.8); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(0.8); }
-}
-
-.oval-ring {
     position: absolute;
-    width: 420px;
-    height: 200px;
-    border: 3px solid white;
-    border-radius: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    animation: spin 8s linear infinite;
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 64px;
+    font-weight: bold;
+    z-index: 2;
+    animation: bounce 2.5s ease-in-out infinite;
 }
 
-@keyframes spin {
+/* Controlled bounce — never exceeds ring size */
+@keyframes bounce {
+    0% { transform: translate(-50%, -50%) scale(0.92); }
+    50% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(0.92); }
+}
+
+/* Cartoon Sun Ring */
+.sun-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 520px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 1;
+
+    /* Creates outward dashes */
+    background: repeating-conic-gradient(
+        white 0deg 3deg,
+        transparent 3deg 10deg
+    );
+
+    /* Hollow center */
+    -webkit-mask: radial-gradient(ellipse, transparent 55%, black 56%);
+    mask: radial-gradient(ellipse, transparent 55%, black 56%);
+
+    animation: rotateSun 12s linear infinite;
+}
+
+/* Rotation */
+@keyframes rotateSun {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* Tagline area */
 .tagline-container {
     position: relative;
     margin-top: 80px;
