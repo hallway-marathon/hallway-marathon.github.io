@@ -31,66 +31,46 @@ body {
     animation: bounce 2.5s ease-in-out infinite;
 }
 
-/* Controlled bounce — never exceeds ring size */
 @keyframes bounce {
     0% { transform: translate(-50%, -50%) scale(0.92); }
     50% { transform: translate(-50%, -50%) scale(1); }
     100% { transform: translate(-50%, -50%) scale(0.92); }
 }
 
-
 /* ============================= */
-/* ORBITAL DASH SYSTEM */
+/* TRUE ELLIPTICAL ORBIT SYSTEM */
 /* ============================= */
 
-/* Fixed horizontal ellipse container */
 .orbit {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 520px;   /* ellipse width */
-    height: 200px;  /* ellipse height */
+    width: 520px;
+    height: 200px;
     transform: translate(-50%, -50%);
     pointer-events: none;
 }
 
-/* Individual dash */
+/* Each dash follows an elliptical path */
 .dash {
     position: absolute;
-    top: 50%;
-    left: 50%;
     width: 6px;
     height: 18px;
     background: black;
 
-    /* Perfect ellipse math using scale */
-    animation: orbitMove 10s linear infinite;
-    animation-delay: calc(var(--i) * -0.4s);
+    offset-path: ellipse(260px 100px at 50% 50%);
+    offset-rotate: 0deg; /* keeps dashes vertical */
+    animation: move 8s linear infinite;
+    animation-delay: calc(var(--i) * -0.33s);
 }
 
-/* Elliptical orbital motion */
-/* Horizontal radius = 260px */
-/* Vertical radius = 100px */
-@keyframes orbitMove {
-    from {
-        transform:
-            rotate(0deg)
-            translateX(260px)
-            scaleY(0.38)
-            rotate(0deg);
-    }
-    to {
-        transform:
-            rotate(360deg)
-            translateX(260px)
-            scaleY(0.38)
-            rotate(-360deg);
-    }
+@keyframes move {
+    from { offset-distance: 0%; }
+    to { offset-distance: 100%; }
 }
-
 
 /* ============================= */
-/* TAGLINE SECTION */
+/* TAGLINES */
 /* ============================= */
 
 .tagline-container {
