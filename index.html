@@ -7,54 +7,96 @@
 </head>
 <body>
 
-    <div class="container">
+    <!-- ================= HERO SECTION ================= -->
+    <section id="hero" class="hero">
 
-        <div class="title-wrapper">
+        <!-- LEFT SIDE -->
+        <div class="hero-left">
+            <div class="title-wrapper">
 
-            <!-- Orbital Dash Ring -->
-            <div class="orbit">
+                <div class="orbit">
+                    <!-- 24 orbiting dashes -->
+                    <div class="dash" style="--i:0;"></div>
+                    <div class="dash" style="--i:1;"></div>
+                    <div class="dash" style="--i:2;"></div>
+                    <div class="dash" style="--i:3;"></div>
+                    <div class="dash" style="--i:4;"></div>
+                    <div class="dash" style="--i:5;"></div>
+                    <div class="dash" style="--i:6;"></div>
+                    <div class="dash" style="--i:7;"></div>
+                    <div class="dash" style="--i:8;"></div>
+                    <div class="dash" style="--i:9;"></div>
+                    <div class="dash" style="--i:10;"></div>
+                    <div class="dash" style="--i:11;"></div>
+                    <div class="dash" style="--i:12;"></div>
+                    <div class="dash" style="--i:13;"></div>
+                    <div class="dash" style="--i:14;"></div>
+                    <div class="dash" style="--i:15;"></div>
+                    <div class="dash" style="--i:16;"></div>
+                    <div class="dash" style="--i:17;"></div>
+                    <div class="dash" style="--i:18;"></div>
+                    <div class="dash" style="--i:19;"></div>
+                    <div class="dash" style="--i:20;"></div>
+                    <div class="dash" style="--i:21;"></div>
+                    <div class="dash" style="--i:22;"></div>
+                    <div class="dash" style="--i:23;"></div>
+                </div>
 
-                <!-- 24 evenly spaced dashes -->
-                <div class="dash" style="--i:0;"></div>
-                <div class="dash" style="--i:1;"></div>
-                <div class="dash" style="--i:2;"></div>
-                <div class="dash" style="--i:3;"></div>
-                <div class="dash" style="--i:4;"></div>
-                <div class="dash" style="--i:5;"></div>
-                <div class="dash" style="--i:6;"></div>
-                <div class="dash" style="--i:7;"></div>
-                <div class="dash" style="--i:8;"></div>
-                <div class="dash" style="--i:9;"></div>
-                <div class="dash" style="--i:10;"></div>
-                <div class="dash" style="--i:11;"></div>
-                <div class="dash" style="--i:12;"></div>
-                <div class="dash" style="--i:13;"></div>
-                <div class="dash" style="--i:14;"></div>
-                <div class="dash" style="--i:15;"></div>
-                <div class="dash" style="--i:16;"></div>
-                <div class="dash" style="--i:17;"></div>
-                <div class="dash" style="--i:18;"></div>
-                <div class="dash" style="--i:19;"></div>
-                <div class="dash" style="--i:20;"></div>
-                <div class="dash" style="--i:21;"></div>
-                <div class="dash" style="--i:22;"></div>
-                <div class="dash" style="--i:23;"></div>
-
+                <h1 class="title">Sammy’s Marathon</h1>
             </div>
 
-            <!-- Title -->
-            <h1 class="title">Sammy’s Marathon</h1>
-
+            <div class="tagline-container">
+                <div id="tagline" class="tagline"></div>
+            </div>
         </div>
 
-        <!-- Tagline Section -->
-        <div class="tagline-container">
-            <div id="tagline" class="tagline"></div>
+        <!-- RIGHT SIDE -->
+        <div class="hero-right">
+            <button onclick="scrollToSection('about')">About</button>
+            <button onclick="scrollToSection('contact')">Contact / Donate</button>
+            <button onclick="scrollToSection('event')">Event Details</button>
+            <button onclick="scrollToSection('betting')">Betting</button>
         </div>
 
-    </div>
+    </section>
+
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="section">
+        <h2>About Sammy</h2>
+        <p>
+            690 laps. One hallway. Zero excuses.
+            Sammy is attempting the most legendary indoor endurance feat in dorm history.
+        </p>
+    </section>
+
+
+    <!-- ================= CONTACT / DONATE ================= -->
+    <section id="contact" class="section">
+        <h2>Contact / Donate</h2>
+        <p>Support the cause. Hydration funds accepted.</p>
+    </section>
+
+
+    <!-- ================= EVENT DETAILS ================= -->
+    <section id="event" class="section">
+        <h2>Event Details</h2>
+        <p>Location: 4th Floor Hallway</p>
+        <p>Surface: Premium Linoleum</p>
+        <p>Turns: Many</p>
+    </section>
+
+
+    <!-- ================= BETTING / COUNTDOWN ================= -->
+    <section id="betting" class="section">
+        <h2>Countdown Timer</h2>
+        <div id="countdown"></div>
+
+        <h2>Betting Section</h2>
+        <p>Place your bets. Will he survive?</p>
+    </section>
+
 
     <script src="script.js"></script>
-
 </body>
 </html>
