@@ -6,42 +6,54 @@ function scrollToSection(id) {
     });
 }
 
-/* ================= ROTATING TAGLINES ================= */
+// ================= ROTATING MARQUEE TAGLINES =================
 
-const taglines = [
-    "690 laps later",
-    "The long hall",
-    "4th floor legend",
-    "Run the hall",
-    "Built for the corridor",
-    "Sammy vs the hallway",
-    "Marathon, but its a dorm",
-    "like that one guy on TikTok",
-    "Hallway ultra",
-    "#NoHillsNoExcuses",
-    "Fire exit 26-2",
-    "Sponsored by: The 3rd Floor Vending Machine",
-    "Official Hydration Partner: That One Brita Filter",
-    "Powered by 2 a.m. Motivation"
+const baseTaglines = [
+    "690 Laps. No Mercy.",
+    "Hallway Endurance World Record Attempt.",
+    "Hydration is Optional.",
+    "Blisters are Temporary. Glory is Forever.",
+    "Dorm History Will Be Made."
 ];
 
-const taglineElement = document.getElementById("tagline");
+const mainTitle = "Sammy’s Marathon";
 
+// For last 5, inject the title
+const extendedTaglines = [...baseTaglines, mainTitle, mainTitle, mainTitle, mainTitle, mainTitle];
+
+const taglineElement = document.getElementById("tagline");
 let taglineIndex = 0;
 
-function rotateTagline() {
+function showTagline() {
+    const text = extendedTaglines[taglineIndex];
+    taglineElement.textContent = text;
+
+    // Reset position off left
+    taglineElement.style.transition = 'none';
+    taglineElement.style.transform = 'translateX(-100%)';
     taglineElement.style.opacity = 0;
 
-    setTimeout(() => {
-        taglineElement.textContent = taglines[taglineIndex];
-        taglineElement.style.opacity = 1;
+    // Force reflow
+    void taglineElement.offsetWidth;
 
-        taglineIndex = (taglineIndex + 1) % taglines.length;
-    }, 400);
+    // Animate: zip in, slow center, slide out
+    taglineElement.style.transition = 'transform 2s cubic-bezier(0.5,0,0.5,1), opacity 0.5s ease';
+    taglineElement.style.transform = 'translateX(10%)';
+    taglineElement.style.opacity = 1;
+
+    // Slide out after delay
+    setTimeout(() => {
+        taglineElement.style.transition = 'transform 1.5s ease-in, opacity 1.5s ease-in';
+        taglineElement.style.transform = 'translateX(120%)';
+        taglineElement.style.opacity = 0;
+    }, 2000);
+
+    taglineIndex = (taglineIndex + 1) % extendedTaglines.length;
 }
 
-taglineElement.textContent = taglines[0];
-setInterval(rotateTagline, 3000);
+// Start
+showTagline();
+setInterval(showTagline, 4000);
 
 
 /* ================= COUNTDOWN TIMER ================= */
