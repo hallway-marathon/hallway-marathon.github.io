@@ -58,9 +58,22 @@ setInterval(showTagline, 4000);
 
 /* ================= COUNTDOWN TIMER ================= */
 
-/* Set your event date here */
-const eventDate = new Date("2026-05-01T18:00:00").getTime();
+// Get next Tuesday at 12 PM
+function getNextTuesdayNoon() {
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // Sunday = 0, Monday = 1, ... Saturday = 6
+    let daysUntilTuesday = (2 - dayOfWeek + 7) % 7;
+    if (daysUntilTuesday === 0 && now.getHours() >= 12) {
+        // Today is Tuesday but after 12 PM, go to next week
+        daysUntilTuesday = 7;
+    }
+    const nextTuesday = new Date(now);
+    nextTuesday.setDate(now.getDate() + daysUntilTuesday);
+    nextTuesday.setHours(12, 0, 0, 0); // 12:00 PM
+    return nextTuesday;
+}
 
+const eventDate = getNextTuesdayNoon().getTime();
 const countdownElement = document.getElementById("countdown");
 
 function updateCountdown() {
