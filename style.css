@@ -1,5 +1,4 @@
 /* ================= GLOBAL ================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +17,6 @@ html {
 }
 
 /* ================= HERO SECTION ================= */
-
 .hero {
     display: flex;
     height: 100vh;
@@ -28,7 +26,6 @@ html {
 }
 
 /* LEFT SIDE */
-
 .hero-left {
     width: 60%;
     position: relative;
@@ -36,35 +33,32 @@ html {
 
 .title-wrapper {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    height: 300px;
 }
 
-/* TITLE */
-
+/* BIG ROTATED TITLE */
 .title {
     position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    font-size: 64px;
-    font-weight: bold;
-    z-index: 2;
-    text-align: center;
+    top: 50%;
+    left: 0;
+    font-size: 110px;
+    font-weight: 900;
+    transform: rotate(-25deg) scale(1);
+    transform-origin: left center;
     animation: bounce 2.5s ease-in-out infinite;
 }
 
 @keyframes bounce {
     0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
+        transform: rotate(-25deg) scale(1);
     }
     50% {
-        transform: translate(-50%, -50%) scale(1.05);
+        transform: rotate(-25deg) scale(1.05);
     }
 }
 
 /* TAGLINE */
-
 .tagline-container {
     margin-top: 40px;
     height: 40px;
@@ -76,8 +70,7 @@ html {
     transition: opacity 0.4s ease;
 }
 
-/* RIGHT SIDE */
-
+/* RIGHT SIDE NAV */
 .hero-right {
     width: 30%;
     display: flex;
@@ -100,7 +93,6 @@ html {
 }
 
 /* ================= SECTIONS ================= */
-
 .section {
     height: 100vh;
     padding: 100px 10%;
@@ -120,14 +112,12 @@ html {
 }
 
 /* Slight visual separation */
-
 #about { background: #f8f8f8; }
 #contact { background: #efefef; }
 #event { background: #f8f8f8; }
 #betting { background: #efefef; }
 
 /* COUNTDOWN */
-
 #countdown {
     font-size: 32px;
     font-weight: bold;
