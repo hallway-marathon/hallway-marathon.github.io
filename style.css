@@ -38,7 +38,7 @@ body {
 }
 
 /* ============================= */
-/* TRUE ELLIPTICAL ORBIT SYSTEM */
+/* TRUE RADIAL ELLIPTICAL ORBIT */
 /* ============================= */
 
 .orbit {
@@ -51,24 +51,31 @@ body {
     pointer-events: none;
 }
 
-/* Each dash follows an elliptical path */
+/* Each dash follows the ellipse perfectly */
 .dash {
     position: absolute;
     width: 6px;
     height: 18px;
     background: black;
 
-    offset-path: ellipse(260px 100px at 50% 50%);
-    offset-rotate: 0deg; /* keeps dashes vertical */
-    animation: move 8s linear infinite;
+    /* Center the dash properly */
+    top: 0;
+    left: 0;
+
+    /* Perfect ellipse */
+    offset-path: ellipse(260px 100px at 260px 100px);
+
+    /* THIS makes them rotate radially */
+    offset-rotate: auto;
+
+    animation: orbit 8s linear infinite;
     animation-delay: calc(var(--i) * -0.33s);
 }
 
-@keyframes move {
+@keyframes orbit {
     from { offset-distance: 0%; }
-    to { offset-distance: 100%; }
+    to   { offset-distance: 100%; }
 }
-
 /* ============================= */
 /* TAGLINES */
 /* ============================= */
