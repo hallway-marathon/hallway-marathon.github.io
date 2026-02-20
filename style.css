@@ -63,32 +63,6 @@ html {
     }
 }
 
-/* ORBIT CONTAINER */
-
-.orbit {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-/* DASHES */
-
-.dash {
-    position: absolute;
-    width: 4px;
-    height: 18px;
-    background: black;
-    top: 50%;
-    left: 50%;
-
-    transform:
-        rotate(calc(var(--i) * 15deg))
-        translateY(-180px)
-        rotate(calc(var(--i) * -15deg));
-
-    transform-origin: center;
-}
-
 /* TAGLINE */
 
 .tagline-container {
