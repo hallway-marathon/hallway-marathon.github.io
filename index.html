@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sammy’s Marathon</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -55,10 +56,13 @@
         <p>Location: 4th Floor Hallway</p>
         <p>Surface: Premium Linoleum</p>
         <p>Turns: Many</p>
+
+        <!-- Countdown Timer Added -->
+        <div id="countdown"></div>
     </section>
 
 
-   <!-- ================= BETTING SECTION ================= -->
+    <!-- ================= BETTING SECTION ================= -->
     <section id="betting" class="section">
 
         <div class="betting-wrapper">
@@ -71,6 +75,162 @@
 
     </section>
 
-    <script src="script.js"></script>
+
+<script>
+/* ================= SMOOTH SCROLL ================= */
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+
+
+/* ================= TAGLINE ANIMATION ================= */
+
+const taglines = [
+    "Pain is temporary.",
+    "690 laps. No mercy.",
+    "Hydration is optional.",
+    "The hallway will remember.",
+    "Legends aren’t comfortable.",
+    "Dorm history in the making."
+];
+
+let lastIndexes = [];
+const taglineElement = document.getElementById("tagline");
+
+function getUniqueTagline() {
+    let available = taglines
+        .map((_, index) => index)
+        .filter(index => !lastIndexes.includes(index));
+
+    if (available.length === 0) {
+        lastIndexes = [];
+        available = taglines.map((_, index) => index);
+    }
+
+    const randomIndex = available[Math.floor(Math.random() * available.length)];
+    lastIndexes.push(randomIndex);
+
+    if (lastIndexes.length > 5) {
+        lastIndexes.shift();
+    }
+
+    return taglines[randomIndex];
+}
+
+function animateTagline() {
+    taglineElement.style.transition = "none";
+    taglineElement.style.transform = "translateX(-100%)";
+    taglineElement.style.opacity = "0";
+
+    setTimeout(() => {
+        taglineElement.textContent = getUniqueTagline();
+        taglineElement.style.transition =
+            "transform 3s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.4s ease";
+        taglineElement.style.transform = "translateX(0%)";
+        taglineElement.style.opacity = "1";
+    }, 100);
+
+    setTimeout(() => {
+        taglineElement.style.transition = "transform 1s ease-in, opacity 0.5s ease";
+        taglineElement.style.transform = "translateX(100%)";
+        taglineElement.style.opacity = "0";
+    }, 4500);
+}
+
+animateTagline();
+setInterval(animateTagline, 6000);
+
+
+/* ================= COUNTDOWN TIMER ================= */
+
+// Next Tuesday at 12:00 PM
+function getNextTuesdayNoon() {
+    const now = new Date();
+    const result = new Date();
+    const day = now.getDay();
+    const daysUntilTuesday = (2 - day + 7) % 7 || 7;
+    result.setDate(now.getDate() + daysUntilTuesday);
+    result.setHours(12, 0, 0, 0);
+    return result;
+}
+
+const targetDate = getNextTuesdayNoon();
+
+function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "🚨 The Marathon Has Begun!";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+
+/* ================= LOAD BETTING ODDS ================= */
+
+fetch("odds.json")
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById("bets-container");
+
+        data.bets.forEach(bet => {
+            const betItem = document.createElement("div");
+            betItem.className = "bet-item";
+
+            const title = document.createElement("div");
+            title.className = "bet-title";
+            title.textContent = bet.title;
+
+            const barContainer = document.createElement("div");
+            barContainer.className = "bet-bar-container";
+
+            const bar = document.createElement("div");
+            bar.className = "bet-bar";
+
+            const noDiv = document.createElement("div");
+            noDiv.className = "bet-no";
+            noDiv.style.width = bet.noPercent + "%";
+            noDiv.textContent = "NO " + bet.noPercent + "%";
+
+            const yesDiv = document.createElement("div");
+            yesDiv.className = "bet-yes";
+            yesDiv.style.width = bet.yesPercent + "%";
+            yesDiv.textContent = "YES " + bet.yesPercent + "%";
+
+            const info = document.createElement("div");
+            info.className = "bet-info";
+            info.textContent = "ⓘ";
+            info.setAttribute("data-info", bet.description);
+
+            bar.appendChild(noDiv);
+            bar.appendChild(yesDiv);
+
+            barContainer.appendChild(bar);
+            barContainer.appendChild(info);
+
+            betItem.appendChild(title);
+            betItem.appendChild(barContainer);
+
+            container.appendChild(betItem);
+        });
+    })
+    .catch(error => {
+        console.error("Error loading odds:", error);
+    });
+
+</script>
+
 </body>
 </html>
