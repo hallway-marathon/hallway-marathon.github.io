@@ -129,3 +129,113 @@ html {
     font-weight: bold;
     margin-bottom: 40px;
 }
+
+/* ================= BETTING SECTION ================= */
+
+.betting-wrapper {
+    width: 60%;
+}
+
+#bets-container {
+    margin-top: 40px;
+}
+
+.bet-item {
+    margin-bottom: 40px;
+}
+
+.bet-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.bet-bar-container {
+    display: flex;
+    align-items: center;
+}
+
+.bet-bar {
+    position: relative;
+    width: 37.5vw; /* 3/8 of screen */
+    height: 40px;
+    background: #ddd;
+    display: flex;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.bet-no {
+    background: red;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.bet-yes {
+    background: green;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.bet-info {
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Center betting wrapper properly */
+.betting-wrapper {
+    margin: 0 auto;
+}
+
+/* Ensure bars never overflow text */
+.bet-no,
+.bet-yes {
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.8s ease;
+}
+
+/* Make betting section layout cleaner */
+#betting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Improve spacing alignment */
+.bet-bar-container {
+    justify-content: flex-start;
+}
+
+/* Smooth hover effect on bars */
+.bet-bar:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+/* Tooltip styling (if you switch from title="" to custom tooltip later) */
+.bet-info {
+    position: relative;
+}
+
+.bet-info:hover::after {
+    content: attr(data-info);
+    position: absolute;
+    left: 25px;
+    top: -5px;
+    background: black;
+    color: white;
+    padding: 8px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+    border-radius: 4px;
+    z-index: 10;
+}
