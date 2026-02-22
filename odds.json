@@ -1,0 +1,27 @@
+{
+  "event": "Sammy’s Marathon",
+  "lastUpdated": "2026-02-21",
+  "markets": [
+    {
+      "title": "Will he finish?",
+      "options": [
+        { "name": "Yes", "odds": "+150" },
+        { "name": "No", "odds": "-200" }
+      ]
+    },
+    {
+      "title": "Total Blisters",
+      "options": [
+        { "name": "Over 3.5", "odds": "-110" },
+        { "name": "Under 3.5", "odds": "-110" }
+      ]
+    },
+    {
+      "title": "Hydration Breaks",
+      "options": [
+        { "name": "Over 12", "odds": "+180" },
+        { "name": "Under 12", "odds": "-140" }
+      ]
+    }
+  ]
+}
