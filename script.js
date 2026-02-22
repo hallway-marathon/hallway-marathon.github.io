@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* ================= ROTATING MARQUEE TAGLINES ================= */
+    /* ================= ROTATING TAGLINES ================= */
 
     const baseTaglines = [
         "690 Laps. No Mercy.",
@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const mainTitle = "Sammy’s Marathon";
 
-    // Repeat main title in last 5 slots
     const extendedTaglines = [
         ...baseTaglines,
         mainTitle,
@@ -38,27 +37,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const text = extendedTaglines[taglineIndex];
         taglineElement.textContent = text;
 
-        // Reset off-screen left
         taglineElement.style.transition = "none";
         taglineElement.style.transform = "translateX(-100%)";
         taglineElement.style.opacity = 0;
 
-        // Force reflow
         void taglineElement.offsetWidth;
 
-        // Zip in fast
         taglineElement.style.transition =
             "transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in";
         taglineElement.style.transform = "translateX(10%)";
         taglineElement.style.opacity = 1;
 
-        // Slow move toward center
         setTimeout(() => {
             taglineElement.style.transition = "transform 2s linear";
             taglineElement.style.transform = "translateX(50%)";
         }, 1000);
 
-        // Glide out
         setTimeout(() => {
             taglineElement.style.transition =
                 "transform 1.5s ease-in, opacity 1.5s ease-in";
@@ -77,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getNextTuesdayNoon() {
         const now = new Date();
-        const dayOfWeek = now.getDay(); // Sunday=0 ... Saturday=6
+        const dayOfWeek = now.getDay();
         let daysUntilTuesday = (2 - dayOfWeek + 7) % 7;
 
         if (daysUntilTuesday === 0 && now.getHours() >= 12) {
@@ -132,26 +126,55 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch("odds.json");
             const data = await response.json();
 
-            const bettingSection = document.getElementById("betting");
+            const container = document.getElementById("bets-container");
+            container.innerHTML = "";
 
-            // Prevent duplicates on reload
-            bettingSection.innerHTML = "<h2>Countdown Timer</h2><div id='countdown'></div><h2>Betting Section</h2>";
+            data.bets.forEach(bet => {
 
-            data.markets.forEach(market => {
-                const marketDiv = document.createElement("div");
-                marketDiv.style.marginBottom = "30px";
+                const betItem = document.createElement("div");
+                betItem.className = "bet-item";
 
-                const title = document.createElement("h3");
-                title.textContent = market.title;
-                marketDiv.appendChild(title);
+                const title = document.createElement("div");
+                title.className = "bet-title";
+                title.textContent = bet.title;
 
-                market.options.forEach(option => {
-                    const p = document.createElement("p");
-                    p.textContent = option.name + " — " + option.odds;
-                    marketDiv.appendChild(p);
-                });
+                const barContainer = document.createElement("div");
+                barContainer.className = "bet-bar-container";
 
-                bettingSection.appendChild(marketDiv);
+                const bar = document.createElement("div");
+                bar.className = "bet-bar";
+
+                const noDiv = document.createElement("div");
+                noDiv.className = "bet-no";
+                noDiv.style.width = "0%";
+                noDiv.textContent = "NO " + bet.noPercent + "%";
+
+                const yesDiv = document.createElement("div");
+                yesDiv.className = "bet-yes";
+                yesDiv.style.width = "0%";
+                yesDiv.textContent = "YES " + bet.yesPercent + "%";
+
+                const info = document.createElement("div");
+                info.className = "bet-info";
+                info.textContent = "ⓘ";
+                info.setAttribute("data-info", bet.description);
+
+                bar.appendChild(noDiv);
+                bar.appendChild(yesDiv);
+
+                barContainer.appendChild(bar);
+                barContainer.appendChild(info);
+
+                betItem.appendChild(title);
+                betItem.appendChild(barContainer);
+
+                container.appendChild(betItem);
+
+                // Animate fill
+                setTimeout(() => {
+                    noDiv.style.width = bet.noPercent + "%";
+                    yesDiv.style.width = bet.yesPercent + "%";
+                }, 100);
             });
 
         } catch (error) {
