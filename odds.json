@@ -1,27 +1,28 @@
 {
-  "event": "Sammy’s Marathon",
-  "lastUpdated": "2026-02-21",
-  "markets": [
+  "bets": [
     {
-      "title": "Will he finish?",
-      "options": [
-        { "name": "Yes", "odds": "+150" },
-        { "name": "No", "odds": "-200" }
-      ]
+      "title": "Will He Finish?",
+      "description": "Will Sammy complete all 690 laps without quitting?",
+      "yesPercent": 62,
+      "noPercent": 38
     },
     {
-      "title": "Total Blisters",
-      "options": [
-        { "name": "Over 3.5", "odds": "-110" },
-        { "name": "Under 3.5", "odds": "-110" }
-      ]
+      "title": "Under 7 Hours?",
+      "description": "Will he finish the marathon in under 7 hours total time?",
+      "yesPercent": 48,
+      "noPercent": 52
     },
     {
-      "title": "Hydration Breaks",
-      "options": [
-        { "name": "Over 12", "odds": "+180" },
-        { "name": "Under 12", "odds": "-140" }
-      ]
+      "title": "How Many Breaks?",
+      "description": "Will he take more than 10 breaks during the run?",
+      "yesPercent": 71,
+      "noPercent": 29
+    },
+    {
+      "title": "How Many Times Will He Yak?",
+      "description": "Will Sammy throw up at least once during the marathon?",
+      "yesPercent": 34,
+      "noPercent": 66
     }
   ]
 }
