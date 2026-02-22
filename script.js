@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================================
-       SMOOTH SCROLL
-    ====================================================== */
+    /* ================= SMOOTH SCROLL ================= */
 
     window.scrollToSection = function (id) {
         document.getElementById(id).scrollIntoView({
@@ -11,9 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* =====================================================
-       ROTATING TAGLINES
-    ====================================================== */
+    /* ================= ROTATING TAGLINES ================= */
 
     const baseTaglines = [
         "690 Laps. No Mercy.",
@@ -71,9 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(showTagline, 5000);
 
 
-    /* =====================================================
-       COUNTDOWN TIMER
-    ====================================================== */
+    /* ================= COUNTDOWN TIMER ================= */
 
     function getNextTuesdayNoon() {
         const now = new Date();
@@ -121,13 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
             seconds + "s";
     }
 
-    updateCountdown();
     setInterval(updateCountdown, 1000);
+    updateCountdown();
 
 
-    /* =====================================================
-       LOAD BETTING ODDS
-    ====================================================== */
+    /* ================= LOAD BETTING ODDS ================= */
 
     async function loadOdds() {
         try {
