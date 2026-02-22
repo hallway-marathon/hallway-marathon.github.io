@@ -99,3 +99,36 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+/* ================= LOAD BETTING ODDS ================= */
+
+async function loadOdds() {
+    try {
+        const response = await fetch('odds.json');
+        const data = await response.json();
+
+        const bettingSection = document.getElementById("betting");
+
+        data.markets.forEach(market => {
+            const marketDiv = document.createElement("div");
+            marketDiv.style.marginBottom = "30px";
+
+            const title = document.createElement("h3");
+            title.textContent = market.title;
+            marketDiv.appendChild(title);
+
+            market.options.forEach(option => {
+                const p = document.createElement("p");
+                p.textContent = option.name + " — " + option.odds;
+                marketDiv.appendChild(p);
+            });
+
+            bettingSection.appendChild(marketDiv);
+        });
+
+    } catch (error) {
+        console.error("Error loading odds:", error);
+    }
+}
+
+loadOdds();
