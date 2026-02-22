@@ -1,8 +1,15 @@
-/* ================= GLOBAL ================= */
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -12,11 +19,11 @@ body {
     overflow-x: hidden;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 
-/* ================= HERO SECTION ================= */
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
 .hero {
     display: flex;
     height: 100vh;
@@ -26,6 +33,7 @@ html {
 }
 
 /* LEFT SIDE */
+
 .hero-left {
     width: 60%;
     position: relative;
@@ -37,7 +45,6 @@ html {
     height: 300px;
 }
 
-/* BIG ROTATED TITLE */
 .title {
     position: absolute;
     top: 8%;
@@ -58,7 +65,8 @@ html {
     }
 }
 
-/* TAGLINE ANIMATION */
+/* TAGLINE */
+
 .tagline-container {
     margin-top: 40px;
     height: 50px;
@@ -73,10 +81,12 @@ html {
     white-space: nowrap;
     transform: translateX(-100%);
     opacity: 0;
-    transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+    transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 0.5s ease;
 }
 
 /* RIGHT SIDE NAV */
+
 .hero-right {
     width: 30%;
     display: flex;
@@ -98,7 +108,11 @@ html {
     color: white;
 }
 
-/* ================= SECTIONS ================= */
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
 .section {
     height: 100vh;
     padding: 100px 10%;
@@ -117,23 +131,37 @@ html {
     max-width: 600px;
 }
 
-/* Slight visual separation */
+/* Alternating backgrounds */
+
 #about { background: #f8f8f8; }
 #contact { background: #efefef; }
 #event { background: #f8f8f8; }
-#betting { background: #efefef; }
+#betting { 
+    background: #efefef;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-/* COUNTDOWN */
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
 #countdown {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 40px;
 }
 
-/* ================= BETTING SECTION ================= */
+
+/* =====================================================
+   BETTING SECTION
+===================================================== */
 
 .betting-wrapper {
     width: 60%;
+    margin: 0 auto;
 }
 
 #bets-container {
@@ -152,79 +180,55 @@ html {
 .bet-bar-container {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .bet-bar {
     position: relative;
-    width: 37.5vw; /* 3/8 of screen */
+    width: 37.5vw;
     height: 40px;
     background: #ddd;
     display: flex;
     overflow: hidden;
     border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.bet-bar:hover {
+    transform: scale(1.02);
+}
+
+.bet-no,
+.bet-yes {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.8s ease;
 }
 
 .bet-no {
     background: red;
-    display: flex;
-    align-items: center;
     justify-content: flex-start;
     padding-left: 10px;
-    color: white;
-    font-weight: bold;
 }
 
 .bet-yes {
     background: green;
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
     padding-right: 10px;
-    color: white;
-    font-weight: bold;
 }
 
 .bet-info {
     margin-left: 12px;
     cursor: pointer;
     font-size: 18px;
-}
-
-/* Center betting wrapper properly */
-.betting-wrapper {
-    margin: 0 auto;
-}
-
-/* Ensure bars never overflow text */
-.bet-no,
-.bet-yes {
-    overflow: hidden;
-    white-space: nowrap;
-    transition: width 0.8s ease;
-}
-
-/* Make betting section layout cleaner */
-#betting {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Improve spacing alignment */
-.bet-bar-container {
-    justify-content: flex-start;
-}
-
-/* Smooth hover effect on bars */
-.bet-bar:hover {
-    transform: scale(1.02);
-    transition: transform 0.2s ease;
-}
-
-/* Tooltip styling (if you switch from title="" to custom tooltip later) */
-.bet-info {
     position: relative;
 }
+
+/* Tooltip */
 
 .bet-info:hover::after {
     content: attr(data-info);
