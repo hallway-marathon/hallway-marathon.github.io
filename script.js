@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ================= SMOOTH SCROLL ================= */
+    /* =====================================================
+       SMOOTH SCROLL
+    ====================================================== */
 
     window.scrollToSection = function (id) {
         document.getElementById(id).scrollIntoView({
@@ -9,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* ================= ROTATING TAGLINES ================= */
+    /* =====================================================
+       ROTATING TAGLINES
+    ====================================================== */
 
     const baseTaglines = [
         "690 Laps. No Mercy.",
@@ -67,7 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(showTagline, 5000);
 
 
-    /* ================= COUNTDOWN TIMER ================= */
+    /* =====================================================
+       COUNTDOWN TIMER
+    ====================================================== */
 
     function getNextTuesdayNoon() {
         const now = new Date();
@@ -115,11 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
             seconds + "s";
     }
 
-    setInterval(updateCountdown, 1000);
     updateCountdown();
+    setInterval(updateCountdown, 1000);
 
 
-    /* ================= LOAD BETTING ODDS ================= */
+    /* =====================================================
+       LOAD BETTING ODDS
+    ====================================================== */
 
     async function loadOdds() {
         try {
@@ -170,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 container.appendChild(betItem);
 
-                // Animate fill
                 setTimeout(() => {
                     noDiv.style.width = bet.noPercent + "%";
                     yesDiv.style.width = bet.yesPercent + "%";
@@ -183,5 +190,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     loadOdds();
-
 });
