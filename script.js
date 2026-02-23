@@ -155,19 +155,23 @@ document.addEventListener("DOMContentLoaded", function () {
         title.className = "bet-title";
         title.textContent = bet.title;
 
-        // Count frequency of each guess
-        const freq = {};
-        bet.guesses.forEach(n => { freq[n] = (freq[n] || 0) + 1; });
+        // Each guess is [number, amount]. Aggregate by number: sum money, count bets.
+        const totals = {}; // { number: { money: N, count: N } }
+        bet.guesses.forEach(([num, amount]) => {
+            if (!totals[num]) totals[num] = { money: 0, count: 0 };
+            totals[num].money += amount;
+            totals[num].count += 1;
+        });
 
-        const keys   = Object.keys(freq).map(Number).sort((a, b) => a - b);
-        const maxFreq = Math.max(...Object.values(freq));
+        const keys    = Object.keys(totals).map(Number).sort((a, b) => a - b);
+        const maxMoney = Math.max(...keys.map(k => totals[k].money));
 
         const histogram = document.createElement("div");
         histogram.className = "histogram";
 
         keys.forEach(val => {
-            const count     = freq[val];
-            const heightPct = (count / maxFreq) * 100;
+            const { money, count } = totals[val];
+            const heightPct = (money / maxMoney) * 100;
 
             const col = document.createElement("div");
             col.className = "hist-col";
@@ -175,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const bar = document.createElement("div");
             bar.className = "hist-bar";
             bar.style.height = "0%";
-            bar.setAttribute("data-tooltip", `${count} guess${count > 1 ? "es" : ""}`);
+            bar.setAttribute("data-tooltip", `$${money} across ${count} bet${count > 1 ? "s" : ""}`);
 
             const label = document.createElement("div");
             label.className = "hist-label";
@@ -187,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => { bar.style.height = heightPct + "%"; }, 150);
 
-            // Shared tooltip element
             bar.addEventListener("mouseenter", () => {
                 let tip = document.getElementById("hist-tooltip");
                 if (!tip) {
@@ -221,8 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function loadOdds() {
         try {
-            const response = await fetch("odds.json");
-            const data     = await response.json();
+            const response  = await fetch("odds.json");
+            const data      = await response.json();
             const container = document.getElementById("bets-container");
             container.innerHTML = "";
 
