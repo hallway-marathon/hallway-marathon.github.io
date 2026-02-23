@@ -1,28 +1,34 @@
 {
   "bets": [
     {
+      "id": "finish",
+      "type": "yesno",
       "title": "Will He Finish?",
       "description": "Will Sammy complete all 690 laps without quitting?",
       "yesPercent": 62,
       "noPercent": 38
     },
     {
-      "title": "Under 7 Hours?",
-      "description": "Will he finish the marathon in under 7 hours total time?",
+      "id": "time",
+      "type": "yesno",
+      "title": "Will He Finish in Under 7 Hours?",
+      "description": "Will he complete the marathon in under 7 hours total time?",
       "yesPercent": 48,
       "noPercent": 52
     },
     {
-      "title": "How Many Breaks?",
-      "description": "Will he take more than 10 breaks during the run?",
-      "yesPercent": 71,
-      "noPercent": 29
+      "id": "breaks",
+      "type": "histogram",
+      "title": "How Many Breaks Will He Take?",
+      "description": "Each bar = a guessed number of breaks. Height = how many people guessed it.",
+      "guesses": [3, 5, 5, 7, 10, 10, 10, 12, 15, 20]
     },
     {
+      "id": "yak",
+      "type": "histogram",
       "title": "How Many Times Will He Yak?",
-      "description": "Will Sammy throw up at least once during the marathon?",
-      "yesPercent": 34,
-      "noPercent": 66
+      "description": "Each bar = a guessed number of yaks. Height = how many people guessed it.",
+      "guesses": [0, 0, 1, 1, 1, 2, 3, 5]
     }
   ]
 }
