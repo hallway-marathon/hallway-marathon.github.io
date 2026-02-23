@@ -3,68 +3,62 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= SMOOTH SCROLL ================= */
 
     window.scrollToSection = function (id) {
-        document.getElementById(id).scrollIntoView({
-            behavior: "smooth"
-        });
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     };
 
 
     /* ================= ROTATING TAGLINES ================= */
 
-    const baseTaglines = [
-        "690 Laps. No Mercy.",
-        "Hallway Endurance World Record Attempt.",
-        "Hydration is Optional.",
-        "Blisters are Temporary. Glory is Forever.",
-        "Dorm History Will Be Made."
-    ];
-
-    const mainTitle = "Sammy’s Marathon";
-
-    const extendedTaglines = [
-        ...baseTaglines,
-        mainTitle,
-        mainTitle,
-        mainTitle,
-        mainTitle,
-        mainTitle
+    const taglines = [
+        "Pain is temporary.",
+        "690 laps. No mercy.",
+        "Hydration is optional.",
+        "The hallway will remember.",
+        "Legends aren't comfortable.",
+        "Dorm history in the making."
     ];
 
     const taglineElement = document.getElementById("tagline");
-    let taglineIndex = 0;
+    let lastIndexes = [];
 
-    function showTagline() {
-        const text = extendedTaglines[taglineIndex];
-        taglineElement.textContent = text;
+    function getUniqueTagline() {
+        let available = taglines
+            .map((_, i) => i)
+            .filter(i => !lastIndexes.includes(i));
 
-        taglineElement.style.transition = "none";
-        taglineElement.style.transform = "translateX(-100%)";
-        taglineElement.style.opacity = 0;
+        if (available.length === 0) {
+            lastIndexes = [];
+            available = taglines.map((_, i) => i);
+        }
 
-        void taglineElement.offsetWidth;
-
-        taglineElement.style.transition =
-            "transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in";
-        taglineElement.style.transform = "translateX(10%)";
-        taglineElement.style.opacity = 1;
-
-        setTimeout(() => {
-            taglineElement.style.transition = "transform 2s linear";
-            taglineElement.style.transform = "translateX(50%)";
-        }, 1000);
-
-        setTimeout(() => {
-            taglineElement.style.transition =
-                "transform 1.5s ease-in, opacity 1.5s ease-in";
-            taglineElement.style.transform = "translateX(120%)";
-            taglineElement.style.opacity = 0;
-        }, 3500);
-
-        taglineIndex = (taglineIndex + 1) % extendedTaglines.length;
+        const pick = available[Math.floor(Math.random() * available.length)];
+        lastIndexes.push(pick);
+        if (lastIndexes.length > taglines.length - 1) lastIndexes.shift();
+        return taglines[pick];
     }
 
-    showTagline();
-    setInterval(showTagline, 5000);
+    function animateTagline() {
+        taglineElement.style.transition = "none";
+        taglineElement.style.transform = "translateX(-100%)";
+        taglineElement.style.opacity = "0";
+
+        setTimeout(() => {
+            taglineElement.textContent = getUniqueTagline();
+            taglineElement.style.transition =
+                "transform 3s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.4s ease";
+            taglineElement.style.transform = "translateX(0%)";
+            taglineElement.style.opacity = "1";
+        }, 100);
+
+        setTimeout(() => {
+            taglineElement.style.transition = "transform 1s ease-in, opacity 0.5s ease";
+            taglineElement.style.transform = "translateX(100%)";
+            taglineElement.style.opacity = "0";
+        }, 4500);
+    }
+
+    animateTagline();
+    setInterval(animateTagline, 6000);
 
 
     /* ================= COUNTDOWN TIMER ================= */
@@ -74,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const dayOfWeek = now.getDay();
         let daysUntilTuesday = (2 - dayOfWeek + 7) % 7;
 
+        // If it's already Tuesday past noon, push to next week
         if (daysUntilTuesday === 0 && now.getHours() >= 12) {
             daysUntilTuesday = 7;
         }
@@ -81,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const nextTuesday = new Date(now);
         nextTuesday.setDate(now.getDate() + daysUntilTuesday);
         nextTuesday.setHours(12, 0, 0, 0);
-
         return nextTuesday;
     }
 
@@ -93,26 +87,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const distance = eventDate - now;
 
         if (distance < 0) {
-            countdownElement.innerHTML = "THE MARATHON HAS BEGUN.";
+            countdownElement.innerHTML = "🚨 THE MARATHON HAS BEGUN.";
             return;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor(
-            (distance % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const seconds = Math.floor(
-            (distance % (1000 * 60)) / 1000
-        );
+        const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         countdownElement.innerHTML =
-            days + "d " +
-            hours + "h " +
-            minutes + "m " +
-            seconds + "s";
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     setInterval(updateCountdown, 1000);
@@ -130,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
             container.innerHTML = "";
 
             data.bets.forEach(bet => {
-
                 const betItem = document.createElement("div");
                 betItem.className = "bet-item";
 
@@ -161,15 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 bar.appendChild(noDiv);
                 bar.appendChild(yesDiv);
-
                 barContainer.appendChild(bar);
                 barContainer.appendChild(info);
-
                 betItem.appendChild(title);
                 betItem.appendChild(barContainer);
-
                 container.appendChild(betItem);
 
+                // Animate bars in after a tick
                 setTimeout(() => {
                     noDiv.style.width = bet.noPercent + "%";
                     yesDiv.style.width = bet.yesPercent + "%";
@@ -182,4 +164,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     loadOdds();
+
 });
