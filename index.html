@@ -4,46 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sammy's Marathon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ================= HERO SECTION ================= -->
     <section id="hero" class="hero">
-
-        <!-- LEFT SIDE -->
         <div class="hero-left">
             <div class="title-wrapper">
-                <h1 class="title">Sammy's Marathon</h1>
+                <h1 class="title">Sammy's<br>Marathon</h1>
             </div>
             <div class="tagline-container">
                 <div id="tagline" class="tagline"></div>
             </div>
         </div>
-
-        <!-- RIGHT SIDE -->
         <div class="hero-right">
             <button onclick="scrollToSection('about')">About</button>
             <button onclick="scrollToSection('contact')">Contact / Donate</button>
             <button onclick="scrollToSection('event')">Event Details</button>
             <button onclick="scrollToSection('betting')">Betting</button>
         </div>
-
     </section>
 
 
     <!-- ================= ABOUT SECTION ================= -->
     <section id="about" class="section">
-        <h2>About Sammy</h2>
-        <p>
-            690 laps. One hallway. Zero excuses.
-            Sammy is attempting the most legendary indoor endurance feat in dorm history.
-        </p>
+        <div class="two-col">
+
+            <div class="col-left">
+                <h2>The Competitor</h2>
+                <p class="intro-line">Coming all the way from New Jersey. Standing 5'10". Basically zero formal running experience.</p>
+                <p class="intro-line italic">Sammy enters the hallway arena.</p>
+                <p>A former surfer. A seasonal skier. A man who once jogged to catch a bus and called it "cardio."</p>
+            </div>
+
+            <div class="col-right">
+
+                <div class="stat-block">
+                    <div class="stat-block-title">Training Regimen</div>
+                    <ul>
+                        <li>One light stretch <span class="muted">(optional)</span></li>
+                        <li>Occasional leg day <span class="muted">(in theory)</span></li>
+                        <li>Confidence level: <strong>dangerously high</strong></li>
+                        <li>Endurance level: <strong>to be determined</strong></li>
+                    </ul>
+                </div>
+
+                <div class="two-mini">
+                    <div class="stat-block">
+                        <div class="stat-block-title">Strengths</div>
+                        <ul>
+                            <li>Stubbornness</li>
+                            <li>Refuses to quit when mildly embarrassed</li>
+                            <li>Owns at least one pair of athletic shorts</li>
+                        </ul>
+                    </div>
+                    <div class="stat-block weakness">
+                        <div class="stat-block-title">Weaknesses</div>
+                        <ul>
+                            <li>Has never voluntarily run 26.2 miles</li>
+                            <li>Prone to hallway-induced dizziness</li>
+                            <li>May underestimate carpet friction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mission-bar">
+                    <span><strong>Goal:</strong> 690 laps.</span>
+                    <span><strong>Mission:</strong> Immortality (within the dorm).</span>
+                </div>
+
+            </div>
+        </div>
     </section>
 
 
     <!-- ================= CONTACT / DONATE ================= -->
-    <section id="contact" class="section">
+    <section id="contact" class="section section-dark">
         <h2>Contact / Donate</h2>
         <p>Support the cause. Hydration funds accepted.</p>
     </section>
@@ -51,16 +91,65 @@
 
     <!-- ================= EVENT DETAILS ================= -->
     <section id="event" class="section">
-        <h2>Event Details</h2>
-        <p>Location: 4th Floor Hallway</p>
-        <p>Surface: Premium Linoleum</p>
-        <p>Turns: Many</p>
-        <div id="countdown"></div>
+        <div class="two-col">
+
+            <div class="col-left">
+                <h2>Event Details</h2>
+
+                <div class="detail-list">
+                    <div class="detail-row"><span class="detail-label">Location</span><span>One residential hallway</span></div>
+                    <div class="detail-row"><span class="detail-label">Length</span><span>38.4 Prady's long <span class="muted">(pending intl. recognition)</span></span></div>
+                    <div class="detail-row"><span class="detail-label">Surface</span><span>Standard issue dorm carpet</span></div>
+                    <div class="detail-row"><span class="detail-label">Temp</span><span>Approximately 72°F</span></div>
+                    <div class="detail-row"><span class="detail-label">Humidity</span><span>Emotionally high</span></div>
+                    <div class="detail-row"><span class="detail-label">Laps</span><span>690 estimated</span></div>
+                    <div class="detail-row"><span class="detail-label">Distance</span><span>26.2 miles — a full marathon</span></div>
+                    <div class="detail-row"><span class="detail-label">Sanity</span><span>TBD</span></div>
+                </div>
+
+                <div id="countdown"></div>
+            </div>
+
+            <div class="col-right">
+
+                <div class="two-mini">
+                    <div class="stat-block">
+                        <div class="stat-block-title">Environmental Factors</div>
+                        <ul>
+                            <li>Mild echo amplification</li>
+                            <li>Spectator heckling possible</li>
+                            <li>Occasional RA sighting risk</li>
+                            <li>Snack table temptation zone</li>
+                            <li>Hydration station <span class="muted">(sink, down the hall)</span></li>
+                        </ul>
+                    </div>
+                    <div class="stat-block weakness">
+                        <div class="stat-block-title">Hazards</div>
+                        <ul>
+                            <li>Carpet burn</li>
+                            <li>Mental breakdown at lap 417</li>
+                            <li>Hallway traffic congestion</li>
+                            <li>Sudden existential crisis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mission-bar">
+                    <span><strong>Finish Window:</strong> Somewhere between heroic and concerning.</span>
+                </div>
+
+                <div class="prize-block">
+                    <div class="stat-block-title">Prize</div>
+                    <p>Dorm legend status. Bragging rights. Possibly a Gatorade.</p>
+                </div>
+
+            </div>
+        </div>
     </section>
 
 
     <!-- ================= BETTING SECTION ================= -->
-    <section id="betting" class="section">
+    <section id="betting" class="section section-dark">
         <div class="betting-wrapper">
             <h2>Live Betting Odds</h2>
             <div id="bets-container"></div>
