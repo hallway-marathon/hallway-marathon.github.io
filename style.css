@@ -1,76 +1,94 @@
+/* ================= VARIABLES ================= */
+:root {
+    --black: #111;
+    --white: #fafafa;
+    --off: #f2f1ef;
+    --dark-bg: #1a1a1a;
+    --dark-text: #fafafa;
+    --accent: #111;
+    --muted: #888;
+    --green: #2a9e2a;
+    --red: #e03434;
+    --radius: 12px;
+}
+
 /* ================= GLOBAL ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: white;
-    color: black;
-    overflow-x: hidden;
-}
 html {
     scroll-behavior: smooth;
 }
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+}
+.muted {
+    color: var(--muted);
+    font-size: 0.9em;
+}
+.italic {
+    font-style: italic;
+}
 
-/* ================= HERO SECTION ================= */
+/* ================= HERO ================= */
 .hero {
     display: flex;
     height: 100vh;
     align-items: center;
     justify-content: space-between;
     padding: 0 8%;
+    background: var(--white);
 }
-
-/* LEFT SIDE */
 .hero-left {
-    width: 60%;
+    width: 58%;
     position: relative;
 }
 .title-wrapper {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 320px;
 }
-
-/* BIG ROTATED TITLE */
 .title {
+    font-family: 'Bebas Neue', sans-serif;
     position: absolute;
-    top: 8%;
+    top: 0;
     left: 0;
-    font-size: 110px;
-    font-weight: 900;
-    transform: rotate(-25deg) scale(1);
+    font-size: 130px;
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 2px;
+    transform: rotate(-15deg) scale(1);
     transform-origin: left center;
     animation: bounce 2.5s ease-in-out infinite;
 }
 @keyframes bounce {
-    0%, 100% { transform: rotate(-25deg) scale(1); }
-    50%       { transform: rotate(-25deg) scale(1.05); }
+    0%, 100% { transform: rotate(-15deg) scale(1); }
+    50%       { transform: rotate(-15deg) scale(1.04); }
 }
-
-/* TAGLINE ANIMATION */
 .tagline-container {
-    margin-top: 40px;
-    height: 50px;
+    margin-top: 50px;
+    height: 40px;
     overflow: hidden;
     position: relative;
 }
 .tagline {
     position: absolute;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
     white-space: nowrap;
     transform: translateX(-100%);
     opacity: 0;
+    letter-spacing: 0.5px;
     transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
 }
-
-/* RIGHT SIDE NAV */
 .hero-right {
-    width: 30%;
-    height: 60vh;
+    width: 28%;
+    height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -78,58 +96,187 @@ html {
 }
 .hero-right button {
     padding: 16px 20px;
-    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    border: 2px solid black;
-    background: white;
-    border-radius: 12px;
-    transition: all 0.2s ease;
+    border: 2px solid var(--black);
+    background: transparent;
+    border-radius: var(--radius);
+    letter-spacing: 0.3px;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 .hero-right button:hover {
-    background: black;
-    color: white;
+    background: var(--black);
+    color: var(--white);
 }
 
 /* ================= SECTIONS ================= */
 .section {
-    height: 100vh;
-    padding: 100px 10%;
+    min-height: 100vh;
+    padding: 80px 8%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: var(--off);
+}
+.section-dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
 }
 .section h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+}
+.section-dark h2 {
+    color: var(--dark-text);
 }
 .section p {
-    font-size: 20px;
-    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 640px;
 }
 
-#about   { background: #f8f8f8; }
-#contact { background: #efefef; }
-#event   { background: #f8f8f8; }
-#betting { background: #efefef; }
+/* ================= TWO-COL LAYOUT ================= */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+    width: 100%;
+}
+.col-left h2 {
+    margin-bottom: 20px;
+}
+.col-left p {
+    margin-bottom: 14px;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 100%;
+}
+.intro-line {
+    font-size: 18px !important;
+    font-weight: 500;
+}
 
-/* COUNTDOWN */
+/* ================= STAT BLOCKS ================= */
+.stat-block {
+    background: white;
+    border: 1.5px solid #e0e0e0;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+}
+.section-dark .stat-block {
+    background: #252525;
+    border-color: #333;
+    color: var(--dark-text);
+}
+.stat-block.weakness {
+    border-color: #f0c0c0;
+    background: #fff8f8;
+}
+.stat-block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+.section-dark .stat-block-title {
+    color: var(--dark-text);
+}
+.stat-block ul {
+    list-style: none;
+    padding: 0;
+}
+.stat-block ul li {
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 3px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.stat-block ul li:last-child {
+    border-bottom: none;
+}
+.two-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* ================= MISSION BAR ================= */
+.mission-bar {
+    background: var(--black);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+.section-dark .mission-bar {
+    background: #333;
+}
+
+/* ================= PRIZE BLOCK ================= */
+.prize-block {
+    background: white;
+    border: 1.5px solid #e0e0e0;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+}
+.prize-block p {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 100%;
+}
+
+/* ================= EVENT DETAIL LIST ================= */
+.detail-list {
+    margin-bottom: 28px;
+}
+.detail-row {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    align-items: baseline;
+}
+.detail-row:last-child {
+    border-bottom: none;
+}
+.detail-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    min-width: 90px;
+    flex-shrink: 0;
+    padding-top: 1px;
+}
+
+/* ================= COUNTDOWN ================= */
 #countdown {
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    color: var(--black);
 }
 
 /* ================= BETTING SECTION ================= */
-#betting {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    min-height: 100vh;
-}
 .betting-wrapper {
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
+    padding: 40px 0;
 }
 #bets-container {
     margin-top: 40px;
@@ -138,84 +285,86 @@ html {
     margin-bottom: 50px;
 }
 .bet-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
     margin-bottom: 14px;
+    color: var(--dark-text);
 }
 
-/* ---- YES/NO BAR ---- */
+/* YES/NO BAR */
 .bet-bar-container {
     display: flex;
     align-items: center;
 }
 .bet-bar {
     width: 100%;
-    height: 44px;
-    background: #ddd;
+    height: 46px;
+    background: #333;
     display: flex;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--radius);
+    transition: transform 0.2s ease;
+}
+.bet-bar:hover {
+    transform: scale(1.01);
 }
 .bet-yes {
-    background: #2a9e2a;
+    background: var(--green);
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 12px;
+    padding-left: 14px;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
     transition: width 0.8s ease;
 }
 .bet-no {
-    background: #e03434;
+    background: var(--red);
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 12px;
+    padding-right: 14px;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
     transition: width 0.8s ease;
 }
-.bet-bar:hover {
-    transform: scale(1.01);
-    transition: transform 0.2s ease;
-}
-
-/* Tooltip (yes/no info icon) */
 .bet-info {
     margin-left: 12px;
     cursor: pointer;
     font-size: 18px;
     position: relative;
     flex-shrink: 0;
+    color: var(--dark-text);
 }
 .bet-info:hover::after {
     content: attr(data-info);
     position: absolute;
     left: 26px;
     top: -5px;
-    background: black;
-    color: white;
+    background: white;
+    color: black;
     padding: 8px 12px;
     font-size: 14px;
     white-space: nowrap;
     border-radius: 8px;
     z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* ---- HISTOGRAM ---- */
+/* HISTOGRAM */
 .histogram {
     display: flex;
     align-items: flex-end;
     gap: 8px;
-    height: 140px;
-    padding-bottom: 28px; /* room for labels */
+    height: 160px;
+    padding-bottom: 30px;
     position: relative;
 }
 .hist-col {
@@ -229,59 +378,73 @@ html {
 }
 .hist-bar {
     width: 100%;
-    background: black;
+    background: var(--white);
     border-radius: 8px 8px 4px 4px;
     transition: height 0.7s ease;
     cursor: pointer;
     min-height: 4px;
 }
 .hist-bar:hover {
-    background: #333;
+    background: #ccc;
 }
 .hist-label {
     position: absolute;
     bottom: -24px;
     font-size: 13px;
     font-weight: 600;
-    color: #444;
+    color: #aaa;
     white-space: nowrap;
 }
-
-/* Histogram floating tooltip */
 .hist-tooltip {
     display: none;
-    position: absolute;
-    background: black;
-    color: white;
-    padding: 6px 10px;
+    position: fixed;
+    background: white;
+    color: black;
+    padding: 6px 12px;
     border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
     pointer-events: none;
-    z-index: 100;
+    z-index: 1000;
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-    .title {
-        font-size: 52px;
+@media (max-width: 900px) {
+    .two-col {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
+    .two-mini {
+        grid-template-columns: 1fr;
+    }
+    .title {
+        font-size: 80px;
+    }
+}
+@media (max-width: 640px) {
     .hero {
         flex-direction: column;
         justify-content: center;
         gap: 40px;
         padding: 60px 6%;
     }
-    .hero-left,
-    .hero-right {
+    .hero-left, .hero-right {
         width: 100%;
     }
     .hero-right {
         height: auto;
-        gap: 14px;
+        gap: 12px;
+    }
+    .title {
+        font-size: 60px;
     }
     .betting-wrapper {
-        width: 90%;
+        width: 95%;
+    }
+    .mission-bar {
+        flex-direction: column;
+        gap: 8px;
     }
 }
