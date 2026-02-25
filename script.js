@@ -64,14 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= COUNTDOWN TIMER ================= */
 
     // Marathon starts tomorrow at 12:00 PM
-    const marathonStart = new Date();
-    marathonStart.setDate(marathonStart.getDate() + 1);
-    marathonStart.setHours(12, 0, 0, 0);
-
-    // Marathon ends Wednesday at 11:59 PM (day after tomorrow)
-    const marathonEnd = new Date(marathonStart);
-    marathonEnd.setDate(marathonStart.getDate() + 1);
-    marathonEnd.setHours(23, 59, 59, 0);
+    // Month is 0-indexed: 0=Jan, 1=Feb, 2=Mar, 3=Apr ...
+    const marathonStart = new Date(2026, 1, 26, 12, 0, 0); // Feb 26 at 12:00 PM
+    const marathonEnd   = new Date(2026, 1, 27, 23, 59, 59); // Feb 27 at 11:59 PM
 
     const countdownElement = document.getElementById("countdown");
 
