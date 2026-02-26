@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Marathon starts tomorrow at 12:00 PM
     // Month is 0-indexed: 0=Jan, 1=Feb, 2=Mar, 3=Apr ...
     const marathonStart = new Date(2026, 1, 25, 12, 0, 0); // Feb 26 at 12:00 PM
-    const marathonEnd   = new Date(2026, 1, 25, 23, 59, 59); // Feb 27 at 11:59 PM
+    const marathonEnd   = new Date(2026, 1, 25, 19, 59, 59); // Feb 27 at 11:59 PM
 
     const countdownElement = document.getElementById("countdown");
 
